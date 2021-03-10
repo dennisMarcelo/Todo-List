@@ -20,8 +20,8 @@ function inputTaskSistem() {
 function clearClassSelect() {
   const li = document.querySelectorAll('li');
   li.forEach((e) => {
-    if (e.className === 'task BackgroundSelected') {
-      e.className = 'task';
+    if (e.matches('.BackgroundSelected')) {
+      e.classList.remove('BackgroundSelected');
     }
   });
 }
@@ -29,12 +29,24 @@ function clearClassSelect() {
 function addLiBackground() {
   olListTarefas.addEventListener('click', (e) => {
     const li = e.target;
-    if (li.className === 'task') {
+    if (li.matches('.task')) {
       clearClassSelect();
-      li.className += ' BackgroundSelected';
+      li.classList.add('BackgroundSelected');
+    }
+  });
+}
+
+function onClickMarkList() {
+  olListTarefas.addEventListener('dblclick', (e) => {
+    const li = e.target;
+    if (!(li.matches('.mark'))) {
+      li.classList.add('mark');
+    } else {
+      li.classList.remove('mark');
     }
   });
 }
 
 inputTaskSistem();
 addLiBackground();
+onClickMarkList();

@@ -18,3 +18,7 @@ p {
 .BackgroundSelected {
   background-color: gray;
 }
+
+.mark {
+  text-decoration: line-through;
+}
