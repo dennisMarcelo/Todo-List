@@ -3,4 +3,14 @@ body {
   padding: 0;
   width: 1366px;
   height: 768px;
+  background-color: rgb(117 , 235 , 121);
+}
+
+h1 , p {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  color: rgb(110 , 88 , 88);
 }
