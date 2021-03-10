@@ -14,3 +14,7 @@ h1 , p {
 p {
   color: rgb(110 , 88 , 88);
 }
+
+.BackgroundSelected {
+  background-color: gray;
+}

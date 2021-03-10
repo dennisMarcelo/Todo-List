@@ -17,11 +17,21 @@ function inputTaskSistem() {
   });
 }
 
+function clearClassSelect() {
+  const li = document.querySelectorAll('li');
+  li.forEach((e) => {
+    if (e.className === 'task BackgroundSelected') {
+      e.className = 'task';
+    }
+  });
+}
+
 function addLiBackground() {
   olListTarefas.addEventListener('click', (e) => {
     const li = e.target;
     if (li.className === 'task') {
-      li.style.backgroundColor = 'rgb(128,128,128)';
+      clearClassSelect();
+      li.className += ' BackgroundSelected';
     }
   });
 }
