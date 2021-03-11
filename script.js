@@ -1,5 +1,21 @@
 const olListTarefas = document.getElementById('lista-tarefas');
 
+function saveList() {
+  const arraList = [];
+  const list = document.querySelectorAll('#lista-tarefas li');
+  list.forEach((e) => {
+    const objLi = {
+      tagName: e.tagName,
+      class: e.className,
+      text: e.innerText,
+    };
+    arraList.push(objLi);
+  });
+
+  localStorage.removeItem('list');
+  localStorage.setItem('list', JSON.stringify(arraList));
+}
+
 function inputTaskSistem() {
   const inputcriarTarefa = document.getElementById('criar-tarefa');
 
@@ -44,6 +60,7 @@ function dbClickMarkList() {
     } else {
       li.classList.remove('completed');
     }
+    saveList();
   });
 }
 
@@ -67,29 +84,11 @@ function buttonRemoveTaskComplite() {
   });
 }
 
-function getArrayList() {
-  const arraList = [];
-  const list = document.querySelectorAll('#lista-tarefas li');
-  list.forEach((e) => {
-    const objLi = {
-      tagName: e.tagName,
-      class: e.className,
-      text: e.innerText,
-    };
-    arraList.push(objLi);
-  });
-
-  return arraList;
-}
-
 function buttonSaveList() {
   const buttonSave = document.getElementById('salvar-tarefas');
 
   buttonSave.addEventListener('click', () => {
-    const arraList = getArrayList();
-
-    localStorage.removeItem('list');
-    localStorage.setItem('list', JSON.stringify(arraList));
+    saveList();
   });
 }
 
@@ -98,8 +97,19 @@ function recoverArrayList() {
   arrayList.forEach((e) => {
     const li = document.createElement('li');
     li.innerText = e.text;
-    li.classList.add(e.class);
+    li.className = e.class;
     olListTarefas.appendChild(li);
+  });
+}
+
+function removeTaskSelected() {
+  const btnRemoveTask = document.getElementById('remover-selecionado');
+  btnRemoveTask.addEventListener('click', () => {
+    const taskSelected = document.querySelector('.BackgroundSelected');
+    if (taskSelected !== null) {
+      taskSelected.remove();
+    }
+    saveList();
   });
 }
 
@@ -110,3 +120,4 @@ buttonRemoveAllTask();
 buttonRemoveTaskComplite();
 buttonSaveList();
 recoverArrayList();
+removeTaskSelected();
