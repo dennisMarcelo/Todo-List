@@ -19,6 +19,6 @@ p {
   background-color: gray;
 }
 
-.mark {
-  text-decoration: line-through;
+.completed {
+  text-decoration: line-through solid black;
 }

@@ -36,17 +36,17 @@ function addLiBackground() {
   });
 }
 
-function onClickMarkList() {
+function dbClickMarkList() {
   olListTarefas.addEventListener('dblclick', (e) => {
     const li = e.target;
-    if (!(li.matches('.mark'))) {
-      li.classList.add('mark');
+    if (!(li.matches('.completed'))) {
+      li.classList.add('completed');
     } else {
-      li.classList.remove('mark');
+      li.classList.remove('completed');
     }
   });
 }
 
 inputTaskSistem();
 addLiBackground();
-onClickMarkList();
+dbClickMarkList();
