@@ -47,6 +47,28 @@ function dbClickMarkList() {
   });
 }
 
+function buttonRemoveAllTask() {
+  const buttonRemoveAll = document.querySelector('#apaga-tudo');
+  buttonRemoveAll.addEventListener('click', () => {
+    const tasks = document.querySelectorAll('.task');
+    tasks.forEach((e) => {
+      e.remove();
+    });
+  });
+}
+
+function buttonRemoveTaskComplite() {
+  const buttonRemoveComplete = document.querySelector('#remover-finalizados');
+  buttonRemoveComplete.addEventListener('click', () => {
+    const classComplite = document.querySelectorAll('.completed');
+    classComplite.forEach((e) => {
+      e.remove();
+    });
+  });
+}
+
 inputTaskSistem();
 addLiBackground();
 dbClickMarkList();
+buttonRemoveAllTask();
+buttonRemoveTaskComplite();
