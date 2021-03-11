@@ -94,12 +94,14 @@ function buttonSaveList() {
 
 function recoverArrayList() {
   const arrayList = JSON.parse(localStorage.getItem('list'));
-  arrayList.forEach((e) => {
-    const li = document.createElement('li');
-    li.innerText = e.text;
-    li.className = e.class;
-    olListTarefas.appendChild(li);
-  });
+  if (arrayList !== null) {
+    arrayList.forEach((e) => {
+      const li = document.createElement('li');
+      li.innerText = e.text;
+      li.className = e.class;
+      olListTarefas.appendChild(li);
+    });
+  }
 }
 
 function removeTaskSelected() {
