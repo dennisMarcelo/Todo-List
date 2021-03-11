@@ -67,8 +67,46 @@ function buttonRemoveTaskComplite() {
   });
 }
 
+function getArrayList() {
+  const arraList = [];
+  const list = document.querySelectorAll('#lista-tarefas li');
+  list.forEach((e) => {
+    const objLi = {
+      tagName: e.tagName,
+      class: e.className,
+      text: e.innerText,
+    };
+    arraList.push(objLi);
+  });
+
+  return arraList;
+}
+
+function buttonSaveList() {
+  const buttonSave = document.getElementById('salvar-tarefas');
+
+  buttonSave.addEventListener('click', () => {
+    const arraList = getArrayList();
+
+    localStorage.removeItem('list');
+    localStorage.setItem('list', JSON.stringify(arraList));
+  });
+}
+
+function recoverArrayList() {
+  const arrayList = JSON.parse(localStorage.getItem('list'));
+  arrayList.forEach((e) => {
+    const li = document.createElement('li');
+    li.innerText = e.text;
+    li.classList.add(e.class);
+    olListTarefas.appendChild(li);
+  });
+}
+
 inputTaskSistem();
 addLiBackground();
 dbClickMarkList();
 buttonRemoveAllTask();
 buttonRemoveTaskComplite();
+buttonSaveList();
+recoverArrayList();
