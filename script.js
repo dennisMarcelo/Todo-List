@@ -29,6 +29,7 @@ function inputTaskSistem() {
       olListTarefas.appendChild(li);
       inputAreaText.value = '';
     }
+
     inputAreaText.focus();
   });
 }
@@ -60,7 +61,6 @@ function dbClickMarkList() {
     } else {
       li.classList.remove('completed');
     }
-    saveList();
   });
 }
 
@@ -109,7 +109,6 @@ function removeTaskSelected() {
     if (taskSelected !== null) {
       taskSelected.remove();
     }
-    saveList();
   });
 }
 
