@@ -1,4 +1,5 @@
 const olListTarefas = document.getElementById('lista-tarefas');
+const selected = '.BackgroundSelected';
 
 function saveList() {
   const arraList = [];
@@ -37,7 +38,7 @@ function inputTaskSistem() {
 function clearClassSelect() {
   const li = document.querySelectorAll('li');
   li.forEach((e) => {
-    if (e.matches('.BackgroundSelected')) {
+    if (e.matches(selected)) {
       e.classList.remove('BackgroundSelected');
     }
   });
@@ -107,9 +108,39 @@ function recoverArrayList() {
 function removeTaskSelected() {
   const btnRemoveTask = document.getElementById('remover-selecionado');
   btnRemoveTask.addEventListener('click', () => {
-    const taskSelected = document.querySelector('.BackgroundSelected');
+    const taskSelected = document.querySelector(selected);
     if (taskSelected !== null) {
       taskSelected.remove();
+    }
+  });
+}
+
+function btnTaskUp() {
+  const btnUp = document.getElementById('mover-cima');
+  btnUp.addEventListener('click', () => {
+    const tasks = document.querySelectorAll('.task');
+    const qtt = tasks.length;
+
+    for (let i = 0; i < qtt; i += 1) {
+      if (tasks[i].matches(selected) && i > 0) {
+        const aux = tasks[i - 1];
+        olListTarefas.insertBefore(tasks[i], aux);
+      }
+    }
+  });
+}
+
+function btnTaskDown() {
+  const btnDown = document.getElementById('mover-baixo');
+  btnDown.addEventListener('click', () => {
+    const tasks = document.querySelectorAll('.task');
+    const qtt = tasks.length;
+
+    for (let i = 0; i < qtt; i += 1) {
+      if (tasks[i].matches(selected) && i < qtt - 1) {
+        const aux = tasks[i + 1];
+        olListTarefas.insertBefore(aux, tasks[i]);
+      }
     }
   });
 }
@@ -122,3 +153,5 @@ buttonRemoveTaskComplite();
 buttonSaveList();
 recoverArrayList();
 removeTaskSelected();
+btnTaskUp();
+btnTaskDown();
