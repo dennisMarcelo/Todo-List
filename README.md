@@ -7,4 +7,3 @@
 - Manipulaçã de Javascript
 
 - manipulação do DOM
-- 
